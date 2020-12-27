@@ -1,0 +1,366 @@
+#### 1.【了解】正则表达式概述
+
+- 正则表达式概念：符合某种规则的字符串的代码
+- 正则表达式的作用：匹配、查找、验证符合某种规则的字符串
+
+#### 2.【理解】re模块操作
+
+- re模块的作用： 在python编程中需要使用正则表达式，需要导入re模块
+
+- re模块的使用步骤：
+
+  - 导入模块
+
+    > ```python
+    > import re
+    > ```
+
+  - 使用match() 方法进行检测
+
+    > ```python
+    > result = re.match("itcast", "itcast.cn")
+    > ```
+
+  - 判断是否检测/匹配成功
+
+    > ```python
+    > if result:
+    > ```
+
+  - 取出匹配的具体内容
+
+    > ```python
+    > 		print(result.group())
+    > ```
+
+#### 3.【记忆】匹配单个字符
+
+- `.` ： 匹配任意一个字符（除\n)
+- `[]`:   匹配任意一个[]列举的字符
+- `\d`:   匹配任意一个0-9字符
+- `\D`:   匹配任意一个非数字字符
+- `\s`:   匹配任意一个空白字符
+- `\S`:   匹配任意一个非空白字符
+- `\w`:   匹配任意一个非特殊字符[a-zA-Z0-9_汉字]
+- `\W`:   匹配任意一个特殊字符
+
+#### 4.【记忆】匹配多个字符
+
+- `*  `:  匹配前一个字符出现0次或者无限次
+
+- `+`:  匹配前一个字符出现1次或者无限次
+
+- `? `：匹配前一个字符出现0次或者1次
+
+- `{m} `：匹配前一个字符出现m次
+
+- `{m,n}`: 匹配前一个字符出现m次到n次
+
+  > `{m,}`: 匹配前一个字符出现最少m次
+  >
+  > `{,n}`: 匹配前一个字符出现最多n次
+
+#### 5.【记忆】匹配开头结尾
+
+- `^` 表示 匹配 以后一个字符开头
+
+  > ^ 有两个作用：
+  >
+  > 1）^\d : 表示以数字开头
+  >
+  > ```python
+  >  # ^	匹配字符串开头
+  >  result = re.match("^\d.*", "3hello")
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >  else:
+  >      print("匹配失败")
+  > ```
+  >
+  > 2）`[^aeiou]` : 表示除了aeiou以外的都匹配
+  >
+  > ```python
+  >   # [^aeiou] : 除aeiou以外的所有字符
+  >  result = re.match("[^aeiou]", "python")
+  > 
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >  else:
+  >      print("匹配失败")
+  > 
+  > ```
+
+- `$ ` 表示 匹配 以前一个字符结尾
+
+  > \d$  表示数字结尾
+  >
+  > ```python
+  >   # $	匹配字符串结尾
+  >  result = re.match(".*\d$", "hello4")
+  >  # result = re.match(".*\d$", "hello")
+  > 
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >  else:
+  >      print("匹配失败")
+  > 
+  >  # ^ 和 $ 一起使用
+  >  # result = re.match("^\d.*\d$", "3hello4")
+  >  # result = re.match("^[a-zA-Z0-9_]{8,20}$", "01234567890123456789")
+  >  result = re.match("^itcast$", "itcast")
+  > 
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >  else:
+  >      print("匹配失败")
+  > ```
+
+* 练习:
+
+  > ```python
+  >  # 1.匹配出163的邮箱地址，且@符号之前有4到20位，例如hello@163.com
+  >  # result = re.match("[a-zA-Z0-9_]{4,20}@163.com", "hello@163.com")
+  >  # result = re.match("[a-zA-Z0-9_]{4,20}@163.com", "hello@163acom")
+  >  # \. : \是转义字符，把.字符的特殊意义取消了，只是表示字符`.`
+  >  result = re.match("[a-zA-Z0-9_]{4,20}@163\.com", "hello@163.com")
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >  else:
+  >      print("匹配失败")
+  > 
+  > 
+  >  # 2.匹配出11位手机号码
+  >  result = re.match("1[3-9]\d{9}", "13800138000")
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >  else:
+  >      print("匹配失败")
+  > 
+  > 
+  > 
+  > 
+  >  # 3.匹配出微博中的话题, 比如: #幸福是奋斗出来的#
+  >  result = re.match("^#.+#$", "#幸福是奋斗出来的#")
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >  else:
+  >      print("匹配失败")
+  > 
+  > 
+  >  # 扩展:
+  >  # 贪婪匹配: .+ 满足的字符越多越好    re.match 方法默认使用的是贪婪匹配
+  >  # result = re.match("#.+#", "#幸福#是奋斗出来的#")
+  >  # 非贪婪匹配: .+? 满足的字符越少越好
+  >  result = re.match("#.+?#", "#幸福#是奋斗出来的#")
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >  else:
+  >      print("匹配失败")
+  > 
+  > ```
+  >
+  > 
+
+#### 6.【记忆】匹配分组
+
+- `|` 的作用：匹配左边或者右边的正则表达式
+
+  > ```python
+  >  # |	匹配左右任意一个正则表达式
+  >  # 需求1：在列表中["apple", "banana", "orange", "pear"]，匹配apple和pear
+  >  my_list = ["apple", "banana", "orange", "pear"]
+  > 
+  >  for item in my_list:
+  >      result = re.match("apple|pear", item)
+  >      if result:
+  >          print("匹配成功: ", result.group())
+  >      else:
+  >          print("匹配失败")
+  > 
+  >  # 需求1.2.匹配出11位手机号码 或者 座机号 3到4位区号-8位电话
+  >  # result = re.match("1[3-9]\d{9}|0\d{2,3}-\d{8}", "13800138000")
+  >  result = re.match("1[3-9]\d{9}|0\d{2,3}-\d{8}", "0755-81234567")
+  > 
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >  else:
+  >      print("匹配失败")
+  > 
+  > ```
+
+- 分组，整体匹配:`()` : 把括号的数据作为分组匹配
+
+  > ```python
+  >  # (ab)	将括号中字符作为一个分组
+  >  # 需求2：匹配出163、126、qq等邮箱
+  >  # result = re.match("[a-zA-Z0-9_]{4,20}@163\.com", "hello@163.com")
+  >  # result = re.match("[a-zA-Z0-9_]{4,20}@163\.com|[a-zA-Z0-9_]{4,20}@126\.com|[a-zA-Z0-9_]{4,20}@qq\.com", "hello@126.com")
+  >  result = re.match("[a-zA-Z0-9_]{4,20}@(163|126|qq)\.com", "hello@qq.com")
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >      print("匹配分组1: ", result.group(1))
+  >  else:
+  >      print("匹配失败")
+  > 
+  > 
+  >  # 需求3: 匹配qq:10567这样的数据，提取出来qq文字和qq号码
+  >      # (): 第一个()中匹配的内容就是第一分组, group(1)
+  >      #     第二个()中匹配的内容就是第二分组, group(2)
+  >  result = re.match("(qq):(\d{4,12})", "qq:10567")
+  >  if result:
+  >      print("匹配成功: ", result.group())
+  >      print("匹配分组1: ", result.group(1))
+  >      print("匹配分组2: ", result.group(2))
+  > 
+  >  else:
+  >      print("匹配失败")
+  > 
+  > ```
+  >
+  > 把 @ .... ".com" 之间的内容整体进行匹配
+
+- 提取子字符串
+
+  > ```python
+  > result.group(1)
+  > result.group(2)
+  > ....
+  > ```
+
+- 引用 分组
+
+  \1    表示引用第一组 
+
+  ```python
+  		result = re.match("<([a-zA-Z1-6]+)>.+</\\1>", "<p>hh</p>")
+  
+      if result:
+          print("匹配成功: ", result.group())
+          print("匹配分组1: ", result.group(1))
+      else:
+          print("匹配失败")
+  ```
+
+  > `\\1` 表示引用第一组 ，`\\`是转义字符，转义后代表一个 `\`
+  >
+  > `\\2` 表示引用第二组
+
+- 分组起别名
+
+  - 起名
+
+    > `(?P<name>)`
+
+  - 引用别名
+
+    > `(?P=name)`
+
+  - 整体代码：
+
+    > ```python
+    >  # (?P<name>)	分组起别名
+    >  # (?P=name)	引用别名为name分组匹配到的字符串
+    >  # 需求6：匹配出<html><h1>www.itcast.cn</h1></html>
+    >  result = re.match("<(?P<name1>[a-zA-Z1-6]+)><(?P<name2>[a-zA-Z1-6]+)>.+</(?P=name2)></(?P=name1)>", "<html><h1>www.itcast.cn</h1></html>")
+    > 
+    >  if result:
+    >      print("匹配成功: ", result.group())
+    >      print("匹配分组1: ", result.group(1))
+    >      print("匹配分组2: ", result.group(2))
+    > 
+    >  else:
+    >      print("匹配失败")
+    > ```
+
+
+### 四、 知识点总结
+
+```
+能够知道装饰器方式的property属性的定义方式
+	class Person(object):
+			def __init__(self):
+				self.__age = 0
+			@property
+			def age(self):
+				return self.__age
+			@age.setter
+			def age(self, new_age):
+				self.__age = new_age
+		
+	p1 = Person()
+	p1.age = 10
+	print(p1.age)
+
+能够知道自定义上下文管理器的实现方式
+	class File(object):
+		def __enter__(self):
+			...
+			self.__file = open(..)
+			return self.__file
+			
+		def __exit__(self):
+			...
+			self.__file.close()
+
+	with File("1.txt", "r") as f:
+		print(f.read())
+		
+能够知道生成器的两种创建方式
+	1. g1 = (x*2 for x in range(5))
+	2. def foo():
+				for x in range(5):
+					yield x*2
+		 g1 = foo()
+
+能够知道深拷贝和浅拷贝的区别
+	浅拷贝: 最多拷贝一层
+	深拷贝: 可能拷贝多层
+
+能够知道正则表达式的作用
+	匹配或查询符合规则的字符串
+
+能够知道在python中使用正则表达式需要导入的模块
+	import re
+
+能够使用re模块匹配单个字符
+	result = re.match(".", "xxx")
+	print(result.group())
+	
+	.
+	[]
+	\d
+	\D
+	\s
+	\S
+	\w
+	\W
+
+能够使用re模块匹配多个字符
+	
+	result = re.match(".+", "xxx")
+	print(result.group())
+
+	* : >= 0
+	+ : >= 1
+	? : 0 or 1
+	{m} : == m
+	{m,n} : m <= .. <= n
+
+能够使用re模块匹配指定字符串开头或者结尾
+	^\d
+	\d$
+	
+能够使用re模块提取分组数据
+	result = re.match("(qq):(\d{4,12})", "qq:10567")
+	result.group()
+	result.group(1)
+	result.group(2)
+	
+加一个作业:
+	匹配ipv4地址
+	192.168.16.123
+	0-255.0-255.0-255.0-255
+	
+	(\d|\d\d|1\d\d|).().().()
+```
+
