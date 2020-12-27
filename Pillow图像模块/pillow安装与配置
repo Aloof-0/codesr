@@ -1,0 +1,4 @@
+# 安装扩展
+pip install Pillow
+# 导包
+from PIL import Image
