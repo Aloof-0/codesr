@@ -6,4 +6,3 @@
 @IDE ：PyCharm
 @Motto：ABC(Always Be Coding)
 """
-print("hello")
