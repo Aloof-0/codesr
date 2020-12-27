@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2019/12/1 22:03
+# @Author   : 高冷
+# @FileName  : 简介.py
+
+一.定义
+    1. 函数
+        def + 函数名(参数)
+    2. 面向对象
+           class => 类
+           def   => 方法
+
+二.执行
+    1. 函数的执行
+        def 函数名():
+            函数名(参数)
+    2. 面向对象
+        i = Bar() # 创建对象(对象,实例)
+
+三.如何创建类
+    class 类名:
+        pass
+
+四.创建方法:
+    构造方法 __init__
+                           obj = 类名("")
+    普通方法 obj = 类名()
+                           obj.普通方法名()
+五.面向对象三大特性
+    1. 封装 claaa Bar:
+               def __init__(self, n, a):
+                    self.name = n
+                    self.age = a
+
+         obj1 = Bar('alex',18)
+         obj2 = Bar('wbx',10000)
+
+    2. 继承 class F:                  # 父类
+                def s1(self):
+                    print("a")
+            class L(F):               # 子类
+                def s2(self):
+                    print("b")
+
+            obj = L()
+            obj.s1()
