@@ -1,0 +1,8 @@
+captcha 的使用
+	captcha 这个框架中有一个 generate_captcha( ) 函数, 调用这个函数, 可以同时生成一个图片和对应内容的文字信息. 使用方法如下所示:
+
+# text 文本验证码
+# image 验证码图片二进制流
+	text, image = captcha.generate_captcha()
+	验证码信息:text
+	验证码信息:image
