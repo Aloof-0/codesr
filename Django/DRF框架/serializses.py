@@ -27,7 +27,19 @@ class BookInfoserializer(serializers.Serializer):
     # 2.序列化为关联对象的__str__方法返回的结果
     book_str = serializers.StringRelatedField()
 
-
-
-
-
+# 针对HeroInfo模型类定义序列化器
+class HeroInfoSerializer(serializers.Serializer):
+    # 主键隐藏属性
+    id = serializers.IntegerField()
+    # 固有属性
+    hname = serializers.CharField()
+    hgender = serializers.IntegerField()
+    hcomment = serializers.CharField()
+    is_delete = serializers.BooleanField()
+    # 关联属性/字段
+    # (1)、序列化为关联对象的主键值，read_only=True表明此属性/字段只参与序列化操作
+    # hbook = serializers.PrimaryKeyRelatedField(read_only=True)
+    # (2)、序列化为关联对象的__str__方法返回的结果
+    # hbook = serializers.StringRelatedField()
+    # (3)、使用自定义的关联对象模型类序列化器进行序列化
+    # hbook = BookInfoSerializer()
