@@ -6,3 +6,4 @@
 @IDE ：PyCharm
 @Motto：ABC(Always Be Coding)
 """
+print("1")
