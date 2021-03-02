@@ -17,7 +17,7 @@ while True:
         break
     sk.sendall(bytes(inp,"utf8"))
     server_response=sk.recv(1024)
-    print (str(server_response,"gbk"))
+    print(str(server_response,"gbk"))
     print('receive data size',len(server_response))
     if inp == 'exit':
         break

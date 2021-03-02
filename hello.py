@@ -6,4 +6,9 @@
 @IDE ：PyCharm
 @Motto：ABC(Always Be Coding)
 """
-print("1")
+c = [" ","dasd","ddasd","asd"]
+for i in c:
+    num
+    if i == " ":
+        continue
+    print(o)

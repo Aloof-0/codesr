@@ -6,9 +6,6 @@
 @IDE ：PyCharm
 @Motto：ABC(Always Be Coding)
 """
-
-
-
 from PIL import Image
 
 file_path = 'C:/Users/admin/Pictures/scence/1.jpg'   # 获取文件地址 网络图片也是可以
