@@ -18,7 +18,7 @@ f = img.format  # 图像格式
 print(imgSize)
 print(w, h, f)
 """
-打印：
+打印：；    
 (534, 300)
 534 300 JPEG
 """
