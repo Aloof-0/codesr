@@ -6,9 +6,9 @@
 @IDE ：PyCharm
 @Motto：ABC(Always Be Coding)
 """
-c = [" ","dasd","ddasd","asd"]
-for i in c:
-    num
-    if i == " ":
-        continue
-    print(o)
+a = {"a":"1","b":"2"}
+
+p = {}
+for i in a:
+    p[i] = a[i]
+print(p)
