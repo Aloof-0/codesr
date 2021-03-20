@@ -6,9 +6,19 @@
 @IDE ：PyCharm
 @Motto：ABC(Always Be Coding)
 """
-a = {"a":"1","b":"2"}
 
-p = {}
+a = []
+
+for i in range(0, 101):
+      a.append(i)
+
+print(a)
+k = 0
+b = 3
 for i in a:
-    p[i] = a[i]
-print(p)
+
+    if a[k:b] == []:
+        break
+    print(a[k:b])
+    k+=3
+    b+=3
