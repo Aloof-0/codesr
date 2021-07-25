@@ -1,4 +1,4 @@
-# GenericAPIView通用视图类(核心类)
+  # GenericAPIView通用视图类(核心类)
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin, CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, \
     DestroyModelMixin

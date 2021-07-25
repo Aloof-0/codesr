@@ -1,4 +1,5 @@
 
+
 from rest_framework import status
 # Response是drf中唯一的响应对象
 from rest_framework.response import Response
@@ -17,7 +18,7 @@ class IndexView(APIView):
     # (4)、通过request.query_params(类型为QueryDict)提取查询字符串参数
     # (5)、通过request.data提取请求体参数(json参数封装成普通字典类型，表单参数封装成QueryDict类型)
 
-    def post(self, request, pk):
+    def post(se lf, request, pk):
 
         # /test/1/?name=weiwei&age=18&age=28
         # 1、通过请求对象提取查询字符串参数 -->  对应django的request.GET提取查询字符串参数

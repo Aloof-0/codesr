@@ -2,7 +2,6 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from .serializers import *
 
 
@@ -65,7 +64,7 @@ class BookAPIView(APIView):
         # 3、获取序列化器对象
         serializer = BookInfoModelSerializer(instance=book, data=request.data)
         # 4、启动校验步骤
-        if not serializer.is_valid():
+        if not ser0ializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         # 5、更新
         serializer.save()
@@ -103,17 +102,3 @@ class BookAPIView(APIView):
         book.delete()
         # 3、构建响应返回(响应体无数据)
         return Response(data=None, status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,6 @@
 from selenium import webdriver
 import time
-driver = webdriver.Chrome()  # "./chromedriver.exe"
+driver = webdriver.Chrome("./chromedriver.exe")  # "./chromedriver.exe"
 
 driver.get("https://www.baidu.com")
 time.sleep(3)

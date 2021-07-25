@@ -16,11 +16,11 @@ class BooksAPIView(GenericAPIView):
     # GET + /books/
     def get(self, request):
         # 1、获取目标数据 —— 多个模型类对象查询集
-        books = self.get_queryset() # 要么重写该方法返回查询集，要么设置cls.queryset类属性指定默认查询集
+        books = self.get_queryset()  # 要么重写该方法返回查询集，要么设置cls.queryset类属性指定默认查询集
 
         # 2、实例化序列化器对象
         # serializer = BookInfoModelSerializer(instance=books, many=True)
-        serializer = self.get_serializer(instance=books, many=True) # 要么重写该方法返回序列化器对象，要么设置cls.serializer_class类属性指明序列化器
+        serializer = self.get_serializer(instance=books, many=True)  # 要么重写该方法返回序列化器对象，要么设置cls.serializer_class类属性指明序列化器
 
         # 3、获取序列化的结果: serializer.data
         # 4、构建响应
@@ -65,13 +65,14 @@ class BookAPIView(GenericAPIView):
         book = self.get_object()
 
         # 2、实例化序列化器对象
+
         serializer = self.get_serializer(instance=book)
 
         # 3、获取序列化的结果：serializer.data
         # 4、构建响应
         return Response(serializer.data)
 
-    # 全更新一条数据
+    # 全更新一条 数据
     # PUT + /books/<pk>/
     def put(self, request, pk):
         # 1、获取目标数据 —— 被更新的单一模型类对象
@@ -112,17 +113,3 @@ class BookAPIView(GenericAPIView):
         book.delete()
         # 3、构建响应返回(响应体无数据)
         return Response(data=None, status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
