@@ -43,9 +43,9 @@ def Add(s):
 def Sub(s):
     """计算表达式中的减法运算"""
     exp = sub.search(s).group()
-    if exp.startswith('-'):                 #如果表达式形如：-2.2-1.2；需变换为：-（2.2+1.2）
-        exp = exp.replace('-', '+')         #将-号替换为+号；+2.2+1.2
-        res = Add(exp).replace('+', '-')    #调用Add运算，将返回值+3.4变为-3.4
+    if exp.startswith('-'):  # 如果表达式形如：-2.2-1.2；需变换为：-（2.2+1.2）
+        exp = exp.replace('-', '+')  # 将-号替换为+号；+2.2+1.2
+        res = Add(exp).replace('+', '-')  # 调用Add运算，将返回值+3.4变为-3.4
     else:
         exp = re.split(r'-', exp)
         res = str(float(exp[0]) - float(exp[1]))
@@ -54,7 +54,8 @@ def Sub(s):
 
 def calc():
     while True:
-        s = input('Please input the expression(q for quit):')  # 例：'1+2- (3*  4-3/2+ (   3-2*(3+  5 -3*  -0.2-3.3*2.2 -8.5/ 2.4 )+10) +10)'
+        s = input(
+            'Please input the expression(q for quit):')  # 例：'1+2- (3*  4-3/2+ (   3-2*(3+  5 -3*  -0.2-3.3*2.2 -8.5/ 2.4 )+10) +10)'
         if s == 'q':
             break
         else:
@@ -76,6 +77,7 @@ def calc():
                     s = s.replace(s_search, strip.search(s_search).group())  # 将括号脱掉，例：（-2.32）---> -2.32
 
             print('The answer is: %.2f' % (float(s)))
+
 
 if __name__ == '__main__':
     calc()
